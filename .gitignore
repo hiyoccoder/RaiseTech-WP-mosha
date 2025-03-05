@@ -8,3 +8,5 @@
 *.scss.map
 
 # End of https://www.toptal.com/developers/gitignore/api/sass
+
+node_modules

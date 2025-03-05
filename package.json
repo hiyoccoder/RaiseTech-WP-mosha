@@ -1,0 +1,14 @@
+{
+  "name": "mosha-tech",
+  "version": "1.0.0",
+  "main": "bs-config.js",
+  "scripts": {
+    "serve": "browser-sync start --config bs-config.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "browser-sync": "^3.0.3"
+  }
+}
