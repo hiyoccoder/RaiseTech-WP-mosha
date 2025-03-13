@@ -383,16 +383,31 @@ project
   z-index: 1;
   background-position: center -1.875rem;
 }
+@media screen and (min-width: 768px) {
+  .top-catch-bg-img01 {
+    background-position: center;
+  }
+}
 .top-catch-bg-img02 {
   background-image: url(../img/bg-hero2.webp);
   z-index: 0;
   background-position: center -1.5625rem;
+}
+@media screen and (min-width: 768px) {
+  .top-catch-bg-img02 {
+    background-position: center;
+  }
 }
 .top-catch-bg-img03 {
   background-image: url(../img/bg-hero3.webp);
   z-index: -1;
   background-position: center -1.5625rem;
   background-attachment: fixed;
+}
+@media screen and (min-width: 768px) {
+  .top-catch-bg-img03 {
+    background-position: center;
+  }
 }
 .top-catch__in {
   display: flex;
@@ -426,7 +441,7 @@ project
 @media screen and (min-width: 768px) {
   .top-catch-box__head {
     display: block;
-    margin-bottom: 1.3125rem;
+    margin-bottom: 0.5rem;
   }
 }
 @media screen and (min-width: 768px) {
@@ -454,7 +469,7 @@ project
 }
 @media screen and (min-width: 768px) {
   .top-catch-box__foot {
-    margin-top: 1.3125rem;
+    margin-top: 1.75rem;
     text-align: center;
   }
 }
@@ -468,6 +483,7 @@ project
     width: initial;
     display: inline-block;
     padding: 1.5rem 2.3125rem;
+    font-size: 1.125rem;
   }
 }
 
@@ -499,11 +515,11 @@ project
 @media screen and (min-width: 768px) {
   .top-intro-list {
     display: flex;
-    gap: 1.125rem;
+    gap: 4%;
     margin-top: -16.4375rem;
   }
 }
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1080px) {
   .top-intro-list {
     justify-content: center;
     gap: 6.25rem;
@@ -514,7 +530,7 @@ project
     flex: 1;
   }
 }
-@media screen and (min-width: 1201px) {
+@media screen and (min-width: 1080px) {
   .top-intro-item {
     width: 14.3125rem;
     flex: initial;

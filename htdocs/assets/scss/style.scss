@@ -9,6 +9,7 @@ $color-text: #121212;
 $breakpoints: (
   'sp': 'screen and (max-width: 767px)',
   'tab': 'screen and (min-width: 768px)',
+  'tab-large': 'screen and (min-width: 1080px)',
   'pc': 'screen and (min-width: 1201px)',
   'pc-large': 'screen and (min-width: 1280px)',
 );
@@ -435,12 +436,20 @@ project
         background-image: url(../img/bg-hero1.webp);
         z-index: 1;
         background-position: center size(-30);
+
+        @include mediaQuery('tab') {
+          background-position: center;
+        }
       }
 
       &02 {
         background-image: url(../img/bg-hero2.webp);
         z-index: 0;
         background-position: center size(-25);
+
+        @include mediaQuery('tab') {
+          background-position: center;
+        }
       }
 
       &03 {
@@ -448,6 +457,10 @@ project
         z-index: -1;
         background-position: center size(-25);
         background-attachment: fixed;
+
+        @include mediaQuery('tab') {
+          background-position: center;
+        }
       }
     }
   }
@@ -482,7 +495,7 @@ project
 
       @include mediaQuery('tab') {
         display: block;
-        margin-bottom: size(21);
+        margin-bottom: size(8);
       }
     }
 
@@ -512,7 +525,7 @@ project
       margin-top: size(13);
 
       @include mediaQuery('tab') {
-        margin-top: size(21);
+        margin-top: size(28);
         text-align: center;
       }
 
@@ -525,6 +538,7 @@ project
           width: initial;
           display: inline-block;
           padding: size(24) size(37);
+          font-size: size(18);
         }
       }
     }
@@ -557,11 +571,11 @@ project
   &-list {
     @include mediaQuery('tab') {
       display: flex;
-      gap: size(18);
+      gap: 4%;
       margin-top: size(-263);
     }
 
-    @include mediaQuery('pc') {
+    @include mediaQuery('tab-large') {
       justify-content: center;
       gap: size(100);
     }
@@ -572,12 +586,10 @@ project
       flex: 1;
     }
 
-    @include mediaQuery('pc') {
+    @include mediaQuery('tab-large') {
       width: size(229);
       flex: initial;
     }
-
-    @include mediaQuery('pc') {}
 
     &+.top-intro-item {
       margin-top: size(40);
