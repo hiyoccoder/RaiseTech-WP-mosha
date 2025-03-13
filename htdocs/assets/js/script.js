@@ -47,27 +47,39 @@ class HeaderNav {
                 this.close(trigger, menu);
             });
         });
+
+        this.mediaQueryList.addEventListener('change', (e) => {
+            this.triggers.forEach(trigger => {
+                const menu = trigger.nextElementSibling;
+                trigger.classList.remove(this.modifier.open);
+                menu.style.removeProperty('height');
+            });
+            this.parentTrigger.classList.remove(this.modifier.open);
+            this.parentMenu.style.removeProperty('height');
+        });
     }
 
     open(el, target) {
+        if (this.mediaQueryList.matches) {
+            target.classList.remove("is-no-animation");
+        }
         el.classList.add(this.modifier.open);
         const menuHeight = target.scrollHeight;
         target.style.height = `${menuHeight}px`;
-        this.mediaQueryList.addEventListener('change', (e) => {
-            if (!e.matches) {
-                this.parentHeight();
-            }
-        });
+        if (!this.mediaQueryList.matches) {
+            this.parentHeight();
+        }
     }
 
     close(el, target) {
+        if (this.mediaQueryList.matches) {
+            target.classList.add("is-no-animation");
+        }
         el.classList.remove(this.modifier.open);
         target.style.height = '0';
-        this.mediaQueryList.addEventListener('change', (e) => {
-            if (!e.matches) {
-                this.parentHeight();
-            }
-        });
+        if (!this.mediaQueryList.matches) {
+            this.parentHeight();
+        }
     }
 
     parentOpen() {

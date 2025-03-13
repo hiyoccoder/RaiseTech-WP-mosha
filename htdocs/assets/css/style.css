@@ -166,6 +166,10 @@ project
   transition: 0.2s background-color, 0.2s transform;
 }
 
+.is-no-animation {
+  transition: none !important;
+}
+
 .is-open.nav-icon {
   background-color: #2498B3;
 }
@@ -319,6 +323,7 @@ project
   .p-nav-item-sub {
     position: absolute;
     background-color: #fff;
+    height: 0;
   }
 }
 .p-nav-item-sub .p-nav-item__link {

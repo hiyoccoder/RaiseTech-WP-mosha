@@ -201,6 +201,10 @@ project
   }
 }
 
+.is-no-animation {
+  transition: none !important;
+}
+
 .is-open {
   &.nav-icon {
     background-color: $color-main;
@@ -368,6 +372,7 @@ project
       @include mediaQuery('pc') {
         position: absolute;
         background-color: #fff;
+        height: 0;
       }
 
       & .p-nav-item__link {
