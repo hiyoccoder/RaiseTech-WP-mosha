@@ -10,6 +10,8 @@ class HeaderNav {
         this.modifier = {
             open: 'is-open',
         };
+
+        this.mediaQueryList = matchMedia('(min-width:1201px)');
     }
 
     init() {
@@ -47,17 +49,25 @@ class HeaderNav {
         });
     }
 
-    async open(el, target) {
+    open(el, target) {
         el.classList.add(this.modifier.open);
         const menuHeight = target.scrollHeight;
         target.style.height = `${menuHeight}px`;
-        await this.parentHeight();
+        this.mediaQueryList.addEventListener('change', (e) => {
+            if (!e.matches) {
+                this.parentHeight();
+            }
+        });
     }
 
-    async close(el, target) {
+    close(el, target) {
         el.classList.remove(this.modifier.open);
         target.style.height = '0';
-        await this.parentHeight();
+        this.mediaQueryList.addEventListener('change', (e) => {
+            if (!e.matches) {
+                this.parentHeight();
+            }
+        });
     }
 
     parentOpen() {

@@ -7,9 +7,10 @@ $color-black: #000;
 $color-main: #2498B3;
 $color-text: #121212;
 $breakpoints: (
-  'sm': 'screen and (max-width: 767px)',
-  'md': 'screen and (max-width: 1000px)',
-  'xl': 'screen and (min-width: 1280px)',
+  'sp': 'screen and (max-width: 767px)',
+  'tab': 'screen and (min-width: 768px)',
+  'pc': 'screen and (min-width: 1201px)',
+  'pc-large': 'screen and (min-width: 1280px)',
 );
 
 /*====================
@@ -93,23 +94,55 @@ project
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @include mediaQuery('pc') {
+      height: size(70);
+    }
   }
 }
 
 .l-main {
   margin-top: size(50);
+
+  @include mediaQuery('pc') {
+    margin-top: size(70);
+  }
 }
 
 .p-logo {
-  padding-top: size(6);
   padding-left: size(10);
+
+  @include mediaQuery('pc') {
+    padding-left: size(21);
+    display: flex;
+    align-items: center;
+    gap: size(16);
+  }
 
   &__img {
     width: size(143);
+    padding-top: size(6);
+
+    @include mediaQuery('pc') {
+      width: size(160);
+    }
   }
 
   &__text {
     display: none;
+
+    @include mediaQuery('pc-large') {
+      display: block;
+      font-weight: 900;
+      font-size: size(14);
+      line-height: 1.4;
+    }
+
+    & span {
+      @include mediaQuery('pc-large') {
+        font-size: size(18);
+      }
+    }
   }
 }
 
@@ -121,6 +154,10 @@ project
     height: 100%;
     position: relative;
     cursor: pointer;
+
+    @include mediaQuery('pc') {
+      display: none;
+    }
 
     & span {
       font-size: 0;
@@ -209,25 +246,80 @@ project
   height: 0;
   background: $color-white;
 
+  @include mediaQuery('pc') {
+    height: 100%;
+    position: initial;
+  }
+
+  &__in {
+    @include mediaQuery('pc') {
+      height: 100%;
+    }
+  }
+
+  &__list {
+    @include mediaQuery('pc') {
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: flex-end;
+    }
+  }
+
   &-item {
+
     &:hover .p-nav-item__button::after {
       transform: rotate(0deg);
     }
 
     &__link {
+      &:hover {
+        background-color: #F3FAFB;
+        transition: 0.2s background-color, 0.2s color;
+
+        @include mediaQuery('pc') {
+          background-color: #D4F1F8;
+        }
+      }
+
       width: 100%;
       display: block;
       padding: size(10);
       font-weight: bold;
+
+      @include mediaQuery('pc') {
+        height: size(70);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 size(15);
+      }
     }
 
     &__button {
+      &:hover {
+        background-color: #F3FAFB;
+        transition: 0.2s background-color, 0.2s color;
+
+        @include mediaQuery('pc') {
+          background-color: #D4F1F8;
+        }
+      }
+
       width: 100%;
       display: block;
       padding: size(10);
       font-weight: bold;
       position: relative;
       cursor: pointer;
+
+      @include mediaQuery('pc') {
+        height: size(70);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 size(15);
+      }
 
       &::before {
         display: block;
@@ -241,6 +333,10 @@ project
         margin-top: size(-1);
         background-color: $color-text;
         z-index: 9;
+
+        @include mediaQuery('pc') {
+          content: none;
+        }
       }
 
       &::after {
@@ -257,16 +353,57 @@ project
         z-index: 9;
         transform: rotate(90deg);
         transition: 0.2s transform;
+
+        @include mediaQuery('pc') {
+          content: none;
+        }
       }
     }
 
     &-sub {
-      padding-left: size(20);
       overflow: hidden;
       transition: .2s height;
 
+      @include mediaQuery('pc') {
+        position: absolute;
+        background-color: #fff;
+      }
+
       & .p-nav-item__link {
+        padding-left: size(20);
         font-weight: initial;
+
+        @include mediaQuery('pc') {
+          height: initial;
+          justify-content: flex-start;
+          padding: size(15) size(60) size(15) size(15);
+          background-color: #F3FAFB;
+
+          &:hover {
+            @include mediaQuery('pc') {
+              background-color: #fff;
+              color: #2498B3;
+            }
+          }
+        }
+      }
+    }
+
+    &--emphasis {
+      @include mediaQuery('pc') {
+        background-color: #2498B3;
+      }
+
+      & .p-nav-item__link {
+        @include mediaQuery('pc') {
+          color: #fff;
+        }
+
+        &:hover {
+          @include mediaQuery('pc') {
+            background-color: initial;
+          }
+        }
       }
     }
   }
@@ -275,6 +412,10 @@ project
 .top-catch {
   position: relative;
   height: size(320);
+
+  @include mediaQuery('tab') {
+    height: size(650);
+  }
 
   &-bg {
     &-img {
@@ -285,6 +426,10 @@ project
       height: 100%;
       background-size: cover;
       background-position: center;
+
+      @include mediaQuery('tab') {
+        background-size: initial;
+      }
 
       &01 {
         background-image: url(../img/bg-hero1.webp);
@@ -312,6 +457,12 @@ project
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
+
+    @include mediaQuery('tab') {
+      position: relative;
+      align-items: center;
+      justify-content: flex-start;
+    }
   }
 
   &-box {
@@ -319,23 +470,62 @@ project
     background-color: $color-white;
     z-index: 2;
 
+    @include mediaQuery('tab') {
+      margin-top: size(80);
+      padding: size(42) size(40) size(24) size(40);
+      border-radius: size(10);
+      max-width: size(530);
+    }
+
     &__head {
       display: none;
+
+      @include mediaQuery('tab') {
+        display: block;
+        margin-bottom: size(21);
+      }
+    }
+
+    &-title {
+      @include mediaQuery('tab') {
+        text-align: center;
+      }
+
+      & img {
+        @include mediaQuery('tab') {
+          width: size(280);
+        }
+      }
     }
 
     &__label {
       font-size: size(13);
       text-align: center;
       font-weight: bold;
+
+      @include mediaQuery('tab') {
+        font-size: size(16);
+      }
     }
 
     &__foot {
       margin-top: size(13);
 
+      @include mediaQuery('tab') {
+        margin-top: size(21);
+        text-align: center;
+      }
+
       & .c-btn {
         width: size(228);
         margin-left: auto;
         margin-right: auto;
+
+        @include mediaQuery('tab') {
+          width: initial;
+          display: inline-block;
+          padding: size(24) size(37);
+        }
       }
     }
   }
@@ -346,13 +536,55 @@ project
   color: $color-white;
   padding: size(64) 0;
 
+  @include mediaQuery('tab') {
+    padding: size(64) 0;
+    position: relative;
+    z-index: 10;
+  }
+
   &__in {
     padding: 0 size(10);
+
+    @include mediaQuery('tab') {
+      padding: 0 2%;
+    }
+
+    @include mediaQuery('pc') {
+      padding: 0;
+    }
+  }
+
+  &-list {
+    @include mediaQuery('tab') {
+      display: flex;
+      gap: size(18);
+      margin-top: size(-263);
+    }
+
+    @include mediaQuery('pc') {
+      justify-content: center;
+      gap: size(100);
+    }
   }
 
   &-item {
+    @include mediaQuery('tab') {
+      flex: 1;
+    }
+
+    @include mediaQuery('pc') {
+      width: size(229);
+      flex: initial;
+    }
+
+    @include mediaQuery('pc') {}
+
     &+.top-intro-item {
       margin-top: size(40);
+
+      @include mediaQuery('tab') {
+        margin-top: size(0);
+      }
     }
 
     &__in {
@@ -370,6 +602,10 @@ project
       display: flex;
       align-items: center;
       justify-content: center;
+
+      @include mediaQuery('tab') {
+        border: solid size(6) $color-black;
+      }
 
       & i {
         font-size: size(100);
