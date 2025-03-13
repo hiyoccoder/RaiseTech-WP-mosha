@@ -4,44 +4,48 @@ variable
 $font-size: 16;
 $color-white: #fff;
 $color-black: #000;
-$color-main:#2498B3;
+$color-main: #2498B3;
 $color-text: #121212;
 $breakpoints: (
-    'sm': 'screen and (max-width: 767px)',
-    'md': 'screen and (max-width: 1000px)',
-    'xl': 'screen and (min-width: 1280px)',
+  'sm': 'screen and (max-width: 767px)',
+  'md': 'screen and (max-width: 1000px)',
+  'xl': 'screen and (min-width: 1280px)',
 );
 
 /*====================
 function
 ====================*/
 @function size($el) {
-    @return calc($el / $font-size * 1rem);
+  @return calc($el / $font-size * 1rem);
 }
 
 @mixin mediaQuery($breakpoint) {
-    @media #{map-get($breakpoints, $breakpoint)} {
-        @content;
-    }
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
 }
 
 /*====================
 vender
 ====================*/
-html{
+html {
   min-width: size(375);
   line-height: 1.7;
   font-size: size(16);
   font-family: "Noto Sans JP", MyYuGothicM, YuGothic, -apple-system, BlinkMacSystemFont, "Hiragino kaku Gothic ProN", Meiryo, Verdana, arial, helvetica, sans-serif;
   color: $color-text;
 }
-img{
-    max-width: 100%;
+
+img {
+  max-width: 100%;
 }
-ul,ol{
+
+ul,
+ol {
   list-style-type: none;
 }
-a{
+
+a {
   text-decoration: initial;
   color: initial;
 }
@@ -50,8 +54,8 @@ a{
 project
 ====================*/
 
-.c-btn{
-  $color-btn-bg:$color-main;
+.c-btn {
+  $color-btn-bg: $color-main;
   $color-btn-txt: $color-white;
 
   padding: size(12) size(18);
@@ -60,23 +64,31 @@ project
   color: $color-btn-txt;
   border-radius: size(4);
   font-weight: bold;
-  &__in{
+
+  &__in {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  &-text{
-    &__label{
-    line-height: 1;
+
+  &-text {
+    &__label {
+      line-height: 1;
     }
   }
 }
 
-.l-header{
+.l-header {
   background-color: $color-white;
-  &__in{
-  }
-  &__body{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+
+  &__in {}
+
+  &__body {
     height: size(50);
     display: flex;
     align-items: center;
@@ -84,33 +96,45 @@ project
   }
 }
 
-.p-logo{
-  padding-top: size(6);
-  padding-left: size(10);
-    &__img {
-      width: size(143);
-    }
-    &__text{
-        display: none;
-    }
+.l-main {
+  margin-top: size(50);
 }
 
-.nav{
+.p-logo {
+  padding-top: size(6);
+  padding-left: size(10);
+
+  &__img {
+    width: size(143);
+  }
+
+  &__text {
+    display: none;
+  }
+}
+
+.nav {
   height: 100%;
-  &-icon{
+
+  &-icon {
     width: size(50);
     height: 100%;
     position: relative;
-    & span{
+    cursor: pointer;
+
+    & span {
       font-size: 0;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       width: size(23);
       height: size(2);
       background-color: $color-main;
-      &::before{
+      opacity: 1;
+      transition: .2s background-color, .2s transform;
+
+      &::before {
         content: "";
         position: absolute;
         top: 50%;
@@ -120,8 +144,10 @@ project
         height: size(2);
         background-color: $color-main;
         margin-top: size(-9);
+        transition: .2s background-color, .2s transform;
       }
-      &::after{
+
+      &::after {
         content: "";
         position: absolute;
         top: 50%;
@@ -131,68 +157,182 @@ project
         height: size(2);
         background-color: $color-main;
         margin-top: size(9);
+        transition: .2s background-color, .2s transform;
       }
     }
   }
 }
 
-.p-nav{
-  height: 0;
-  overflow: hidden;
-  position: absolute;
+.is-open {
+  &.nav-icon {
+    background-color: $color-main;
+
+    & span {
+      background-color: $color-main;
+
+      &::before {
+        background-color: $color-white;
+        transform: translate(-50%, -50%) rotate(45deg);
+        margin-top: 0;
+      }
+
+      &::after {
+        background-color: $color-white;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        margin-top: 0;
+      }
+    }
+  }
+
+  &+.p-nav {
+    &-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &-item {
+      &__link {
+        padding: size(10);
+        height: auto;
+      }
+    }
+  }
 }
 
-.top-catch{
+.p-nav {
+  overflow: hidden;
+  position: absolute;
+  transition: .2s height;
+  z-index: 100;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: $color-white;
+
+  &-item {
+    &:hover .p-nav-item__button::after {
+      transform: rotate(0deg);
+    }
+
+    &__link {
+      width: 100%;
+      display: block;
+      padding: size(10);
+      font-weight: bold;
+    }
+
+    &__button {
+      width: 100%;
+      display: block;
+      padding: size(10);
+      font-weight: bold;
+      position: relative;
+      cursor: pointer;
+
+      &::before {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-right: size(13);
+        width: size(24);
+        height: size(2);
+        margin-top: size(-1);
+        background-color: $color-text;
+        z-index: 9;
+      }
+
+      &::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: 0;
+        margin-right: size(13);
+        width: size(24);
+        height: size(2);
+        margin-top: size(-1);
+        background-color: $color-text;
+        z-index: 9;
+        transform: rotate(90deg);
+        transition: 0.2s transform;
+      }
+    }
+
+    &-sub {
+      padding-left: size(20);
+      overflow: hidden;
+      transition: .2s height;
+
+      & .p-nav-item__link {
+        font-weight: initial;
+      }
+    }
+  }
+}
+
+.top-catch {
   position: relative;
   height: size(320);
-  &-bg{
+
+  &-bg {
     &-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center;
-        &01 {
-            background-image: url(../img/bg-hero1.webp);
-            z-index: 1;
-            background-position: center size(-30);
-        }
-        &02 {
-          background-image: url(../img/bg-hero2.webp);
-          z-index: 0;
-          background-position: center size(-25);
-        }
-        &03{
-          background-image: url(../img/bg-hero3.webp);
-          z-index: -1;
-          background-position: center size(-25);
-          background-attachment: fixed;
-        }
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+
+      &01 {
+        background-image: url(../img/bg-hero1.webp);
+        z-index: 1;
+        background-position: center size(-30);
       }
+
+      &02 {
+        background-image: url(../img/bg-hero2.webp);
+        z-index: 0;
+        background-position: center size(-25);
+      }
+
+      &03 {
+        background-image: url(../img/bg-hero3.webp);
+        z-index: -1;
+        background-position: center size(-25);
+        background-attachment: fixed;
+      }
+    }
   }
-  &__in{
+
+  &__in {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     height: 100%;
   }
-  &-box{
-    padding:size(20) 0;
+
+  &-box {
+    padding: size(20) 0;
     background-color: $color-white;
     z-index: 2;
-    &__head{
+
+    &__head {
       display: none;
     }
-    &__label{
+
+    &__label {
       font-size: size(13);
       text-align: center;
       font-weight: bold;
     }
-    &__foot{
-      margin-top:size(13);
-      & .c-btn{
+
+    &__foot {
+      margin-top: size(13);
+
+      & .c-btn {
         width: size(228);
         margin-left: auto;
         margin-right: auto;
@@ -201,22 +341,26 @@ project
   }
 }
 
-.top-intro{
+.top-intro {
   background-color: $color-black;
-  color:$color-white;
+  color: $color-white;
   padding: size(64) 0;
-  &__in{
+
+  &__in {
     padding: 0 size(10);
   }
-  &-item{
-    & + .top-intro-item{
+
+  &-item {
+    &+.top-intro-item {
       margin-top: size(40);
     }
-    &__in{
+
+    &__in {
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     &-thum {
       width: size(230);
       height: size(230);
@@ -226,16 +370,19 @@ project
       display: flex;
       align-items: center;
       justify-content: center;
-      & i{
+
+      & i {
         font-size: size(100);
       }
     }
-    &-ttl{
+
+    &-ttl {
       margin-top: size(10);
       font-size: size(24);
       font-weight: bold;
     }
-    &-txt{
+
+    &-txt {
       margin-top: size(8);
       font-weight: bold;
     }
