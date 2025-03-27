@@ -53,6 +53,8 @@ class HeaderNav {
                 const menu = trigger.nextElementSibling;
                 trigger.classList.remove(this.modifier.open);
                 menu.style.removeProperty('height');
+                trigger.classList.remove(this.modifier.open);
+                menu.style.height = '0';
             });
             this.parentTrigger.classList.remove(this.modifier.open);
             this.parentMenu.style.removeProperty('height');

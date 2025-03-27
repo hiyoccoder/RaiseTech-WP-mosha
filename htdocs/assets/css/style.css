@@ -39,6 +39,7 @@ project
   color: #fff;
   border-radius: 0.25rem;
   font-weight: bold;
+  transition: 0.5s;
 }
 .c-btn__in {
   display: flex;
@@ -47,6 +48,7 @@ project
 }
 .c-btn-text__label {
   line-height: 1;
+  white-space: nowrap;
 }
 
 .l-header {
@@ -209,6 +211,7 @@ project
   .p-nav {
     height: 100%;
     position: initial;
+    transition: none;
   }
 }
 @media screen and (min-width: 1201px) {
@@ -308,7 +311,6 @@ project
   background-color: #121212;
   z-index: 9;
   transform: rotate(90deg);
-  transition: 0.2s transform;
 }
 @media screen and (min-width: 1201px) {
   .p-nav-item__button::after {
@@ -408,6 +410,7 @@ project
   z-index: -1;
   background-position: center -1.5625rem;
   background-attachment: fixed;
+  background-size: cover;
 }
 @media screen and (min-width: 768px) {
   .top-catch-bg-img03 {
