@@ -86,10 +86,12 @@ project
 @media screen and (min-width: 1201px) {
   .p-logo {
     padding-left: 1.3125rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
   }
+}
+.p-logo__link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 .p-logo__img {
   width: 8.9375rem;
@@ -260,7 +262,6 @@ project
   padding: 0.625rem;
   font-weight: bold;
   position: relative;
-  cursor: pointer;
 }
 .p-nav-item__button:hover {
   background-color: #F3FAFB;
@@ -270,6 +271,9 @@ project
   .p-nav-item__button:hover {
     background-color: #D4F1F8;
   }
+}
+.p-nav-item__button .p-nav-item__link {
+  padding: 0;
 }
 @media screen and (min-width: 1201px) {
   .p-nav-item__button {

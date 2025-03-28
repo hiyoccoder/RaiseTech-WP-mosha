@@ -117,6 +117,9 @@ project
 
   @include mediaQuery('pc') {
     padding-left: size(21);
+  }
+
+  &__link {
     display: flex;
     align-items: center;
     gap: size(16);
@@ -314,12 +317,15 @@ project
         }
       }
 
+      & .p-nav-item__link {
+        padding: 0;
+      }
+
       width: 100%;
       display: block;
       padding: size(10);
       font-weight: bold;
       position: relative;
-      cursor: pointer;
 
       @include mediaQuery('pc') {
         height: size(70);

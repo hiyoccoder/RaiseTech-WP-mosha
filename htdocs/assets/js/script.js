@@ -55,6 +55,7 @@ class HeaderNav {
                 menu.style.removeProperty('height');
                 trigger.classList.remove(this.modifier.open);
                 menu.style.height = '0';
+                menu.classList.remove("is-no-animation");
             });
             this.parentTrigger.classList.remove(this.modifier.open);
             this.parentMenu.style.removeProperty('height');
@@ -62,9 +63,7 @@ class HeaderNav {
     }
 
     open(el, target) {
-        if (this.mediaQueryList.matches) {
-            target.classList.remove("is-no-animation");
-        }
+        target.classList.remove("is-no-animation");
         el.classList.add(this.modifier.open);
         const menuHeight = target.scrollHeight;
         target.style.height = `${menuHeight}px`;
@@ -74,9 +73,7 @@ class HeaderNav {
     }
 
     close(el, target) {
-        if (this.mediaQueryList.matches) {
-            target.classList.add("is-no-animation");
-        }
+        target.classList.add("is-no-animation");
         el.classList.remove(this.modifier.open);
         target.style.height = '0';
         if (!this.mediaQueryList.matches) {
