@@ -297,6 +297,7 @@ project
       display: block;
       padding: size(10);
       font-weight: bold;
+      cursor: pointer;
 
       @include mediaQuery('pc') {
         height: size(70);
@@ -317,7 +318,7 @@ project
         }
       }
 
-      & .p-nav-item__link {
+      &:has(.p-nav-item__link) {
         padding: 0;
       }
 

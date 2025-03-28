@@ -237,6 +237,7 @@ project
   display: block;
   padding: 0.625rem;
   font-weight: bold;
+  cursor: pointer;
 }
 .p-nav-item__link:hover {
   background-color: #F3FAFB;
@@ -272,7 +273,7 @@ project
     background-color: #D4F1F8;
   }
 }
-.p-nav-item__button .p-nav-item__link {
+.p-nav-item__button:has(.p-nav-item__link) {
   padding: 0;
 }
 @media screen and (min-width: 1201px) {
