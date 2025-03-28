@@ -29,6 +29,11 @@ a {
   color: initial;
 }
 
+a,
+button {
+  cursor: pointer;
+}
+
 /*====================
 project
 ====================*/
@@ -40,6 +45,7 @@ project
   border-radius: 0.25rem;
   font-weight: bold;
   transition: 0.5s;
+  cursor: pointer;
 }
 .c-btn__in {
   display: flex;
